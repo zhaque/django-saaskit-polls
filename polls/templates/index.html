@@ -1,0 +1,33 @@
+{% extends "main.html" %}
+{% load smartif %}
+{% block title %}{{request.muaccount}}: Polls{% endblock %}
+{% block body %}
+<div class="block">
+    <div class="bd">
+    <h2>Welcome to the Polls</h2>
+    <b>(Latest First)</b>
+    {% if latest_poll_list %}
+        <ol>
+        {% for poll in latest_poll_list %}
+            <li><a href="{% url polls_detail poll.id %}">{{ poll.question }}</a></li>
+        {% endfor %}
+        </ol>
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+
+    {% ifequal user request.muaccount.owner %}
+        {% with latest_poll_list|length as poll_count %}
+            {% if poll_count < user.quotas.muaccount_poll %}
+                <br/><a href="{% url polls_create %}">Create a Poll</a>
+            {% else %}
+                <h3>Max limit for polls reached, cannot creat more polls</h3>
+            {% endif %}
+        {% endwith %}
+    {% endifequal %}
+    </div>
+</div>
+{% endblock %}
+{% block sidebar %}
+    SIDE TEXT
+{% endblock %}

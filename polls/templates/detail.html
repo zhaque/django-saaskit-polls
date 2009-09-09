@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+{% block title %}{{request.muaccount}}: Polls{% endblock %}
+{% block body %}
+<div class="block">
+    <div class="bd">
+        <h2>{{ poll.question }}</h2>
+
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+        <form action="{% url polls_vote poll.id %}" method="post">
+        {% for choice in poll.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+            <label for="choice{{ forloop.counter }}">{{ choice.choice }}</label><br />
+        {% endfor %}
+        <input type="submit" value="Vote" />
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block sidebar %}
+    SIDE TEXT
+{% endblock %}

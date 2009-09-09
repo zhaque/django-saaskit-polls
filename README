@@ -1,0 +1,4 @@
+django-polls
+------------
+A sample application which demonstrate how to build/customized exisiting django application for SaaSkit.
+django-polls app customized to work with SaaSkit.

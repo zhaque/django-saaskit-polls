@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block title %}{{request.muaccount}}: Polls{% endblock %}
+{% block body %}
+<div class="block">
+    <div class="bd">
+        <h2>Results for '{{ poll.question }}'</h2>
+
+        <ul>
+        {% for choice in poll.choice_set.all %}
+            <li>{{ choice.choice }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+        </ul>
+        <br/>
+        <a href="{% url polls_index %}">Go back to Polls</a>
+    </div>
+</div>
+{% endblock %}
+{% block sidebar %}
+    SIDE TEXT
+{% endblock %}

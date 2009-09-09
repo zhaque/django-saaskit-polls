@@ -1,0 +1,29 @@
+{% extends "main.html" %}
+{% block title %}{{request.muaccount}}: Polls{% endblock %}
+{% block body %}
+{% ifequal user request.muaccount.owner %}
+<div class="block">
+    <div class="bd">
+        <h2>Create a Poll</h2>
+        <form action="" name="pollform" method="POST">
+        {{ form.as_p }}
+        <br/>
+        Choice 1: <input type="text" name="choice1" />
+        <br/>
+        Choice 2: <input type="text" name="choice2" />
+        <br/>
+        Choice 3: <input type="text" name="choice3" />
+        <br/>
+        Choice 4: <input type="text" name="choice4" />
+        <br/>
+        <input type="submit" value="Submit" />
+        </form>
+        {% else %}
+            <h3>You are not permitted to create a Poll</h3>
+        {% endifequal %}
+    </div>
+</div>
+{% endblock %}
+{% block sidebar %}
+    SIDE TEXT
+{% endblock %}
